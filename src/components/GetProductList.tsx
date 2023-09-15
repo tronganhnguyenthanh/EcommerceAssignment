@@ -25,14 +25,19 @@ const GetProductList = () => {
     setProductList(response)
     setHasMore(!hasMore)
   }
+  const styles = {
+   display:"flex",
+   justifyContent:"center"
+  }
   return (
     <div className="container">
       <h1 className="text-3xl text-center text-blue-500">Get product list</h1>
       <form method="POST">
         <input
           type="text"
-          className="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-9/12 ml-4 rounded-md sm:text-sm focus:ring-1"
+          className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-9/12 ml-4 rounded-md sm:text-sm focus:ring-1"
           style={{margin:"auto", borderRadius:"30px"}}
+          placeholder="Search by keyword"
           onChange={handleOnFilterProduct}
         />
       </form>
