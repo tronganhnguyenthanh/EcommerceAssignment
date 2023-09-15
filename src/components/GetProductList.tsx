@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import productListTypes from "../types/product.list.types"
 import "../css/product.css"
 import InfiniteScroll from "react-infinite-scroll-component"
-import loadingApi from "../images/loading.gif"
+import Loader from "./Loader"
 const GetProductList = () => {
   const [productList, setProductList] = useState<productListTypes | undefined>()
   const [keyword, setKeyword] = useState("")
@@ -25,10 +25,6 @@ const GetProductList = () => {
     setProductList(response)
     setHasMore(!hasMore)
   }
-  const styles = {
-    display:"flex",
-    justifyContent:"center"
-  }
   return (
     <div className="container">
       <h1 className="text-3xl text-center text-blue-500">Get product list</h1>
@@ -44,11 +40,7 @@ const GetProductList = () => {
          dataLength={Number(productList?.products?.length)}
          next={getProductList}
          hasMore={!hasMore}
-         loader={
-          <div style={styles} className="py-48">
-            <img src={loadingApi} alt="" className="w-12"/>
-          </div>
-        }
+         loader={<Loader/>}
        >
         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 p-2">
           {productList?.products?.map((i, index) => {
