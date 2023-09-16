@@ -25,10 +25,6 @@ const GetProductList = () => {
     setProductList(response)
     setHasMore(!hasMore)
   }
-  const styles = {
-   display:"flex",
-   justifyContent:"center"
-  }
   return (
     <div className="container">
       <h1 className="text-3xl text-center text-blue-500">Get product list</h1>
