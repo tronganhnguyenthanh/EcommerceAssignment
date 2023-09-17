@@ -14,6 +14,9 @@ const GetProductList = () => {
     let filterProduct = await fetch(filterProductApi)
     let searchableProduct = await filterProduct?.json()
     setProductList(searchableProduct)
+    if(Number(productList?.products?.length) === 0){
+     setHasMore(false)
+    }
    }
   useEffect(() => {
    getProductList()
@@ -36,13 +39,13 @@ const GetProductList = () => {
         onChange={handleOnFilterProduct}
       />
       <div className="flex justify-end p-2">
-        <p className="text-purple-500">Show {productList?.products?.length} results</p>
+        <p className={Number(productList?.products?.length) === 0 ? "text-red-400":"text-purple-500"}>Show {productList?.products?.length} results</p>
       </div>
       <InfiniteScroll 
-         dataLength={Number(productList?.products?.length)}
-         next={getProductList}
-         hasMore={!hasMore}
-         loader={<Loader/>}
+        dataLength={Number(productList?.products?.length)}
+        next={getProductList}
+        hasMore={hasMore}
+        loader={<Loader/>}
        >
        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 p-2">
           {productList?.products?.map((i, index) => {
