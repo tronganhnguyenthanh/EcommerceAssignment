@@ -51,4 +51,6 @@ This command used for install node_modules
 ## `How do my project works` ?
 Step 1: You enter the keyword that you want to filter
 
-Step 2: When you filter, you click on the spacebar keyboard, it will show you the one that you only want to see, but however, sometimes you filter for the list, there will be a different between using the trim and without using it.  
+Step 2: When you filter, you click on the spacebar keyboard, it will show you the one that you only want to see, but however, sometimes you filter for the list, there will be a different between using the trim and without using it
+
+Step 3: If you see a text show 2 results, it means that two of them are found. If the list is shown by 0 results, no item found.

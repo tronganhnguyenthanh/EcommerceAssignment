@@ -7,7 +7,6 @@ const GetProductList = () => {
   const [productList, setProductList] = useState<productListTypes | undefined>()
   const [keyword, setKeyword] = useState("")
   const [hasMore, setHasMore] = useState(false)
-  // const [error, setError] = useState(false)
   const handleOnFilterProduct = async (e:any) => {
     e.target.value = e.target.value.trim();
     setKeyword(e.target.value)
@@ -29,13 +28,16 @@ const GetProductList = () => {
   return (
     <div className="container">
       <h1 className="text-3xl text-center text-blue-500">Get product list</h1>
-       <input
-         type="text"
-         className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-9/12 ml-4 rounded-md sm:text-sm focus:ring-1"
-         style={{margin:"auto", borderRadius:"30px"}}
-         placeholder="Search by keyword"
-         onChange={handleOnFilterProduct}
-       />
+      <input
+        type="text"
+        className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-9/12 ml-4 rounded-md sm:text-sm focus:ring-1"
+        style={{margin:"auto", borderRadius:"30px"}}
+        placeholder="Search by keyword"
+        onChange={handleOnFilterProduct}
+      />
+      <div className="flex justify-end p-2">
+        <p className="text-purple-500">Show {productList?.products?.length} results</p>
+      </div>
       <InfiniteScroll 
          dataLength={Number(productList?.products?.length)}
          next={getProductList}
