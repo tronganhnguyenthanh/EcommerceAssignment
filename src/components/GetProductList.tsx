@@ -44,7 +44,7 @@ const GetProductList = () => {
       <InfiniteScroll 
         dataLength={Number(productList?.products?.length)}
         next={getProductList}
-        hasMore={hasMore}
+        hasMore={!hasMore}
         loader={<Loader/>}
        >
        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 p-2">
