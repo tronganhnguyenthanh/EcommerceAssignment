@@ -3,6 +3,7 @@ import productListTypes from "../types/product.list.types"
 import "../css/product.css"
 import InfiniteScroll from "react-infinite-scroll-component"
 import Loader from "./Loader"
+import NotFound from "../images/404.gif"
 const GetProductList = () => {
   const [productList, setProductList] = useState<productListTypes | undefined>()
   const [keyword, setKeyword] = useState("")
@@ -14,13 +15,10 @@ const GetProductList = () => {
     let filterProduct = await fetch(filterProductApi)
     let searchableProduct = await filterProduct?.json()
     setProductList(searchableProduct)
-    if(Number(productList?.products?.length) === 0){
-     setHasMore(false)
-    }
-   }
+  }
   useEffect(() => {
    getProductList()
-  }, [])
+  },[])
   const getProductList = async () => {
     let productApi = "https://dummyjson.com/products"
     let productList = await fetch(productApi)
@@ -39,7 +37,14 @@ const GetProductList = () => {
         onChange={handleOnFilterProduct}
       />
       <div className="flex justify-end p-2">
-        <p className={Number(productList?.products?.length) === 0 ? "text-red-400":"text-purple-500"}>Show {productList?.products?.length} results</p>
+        {
+          Number(productList?.products?.length) === 0 ? 
+          <div className="m-auto">
+            <img src={NotFound} alt=""/>
+          </div> 
+          : 
+          <p className="text-blue-700">Show {productList?.products?.length} results</p>
+        }
       </div>
       <InfiniteScroll 
         dataLength={Number(productList?.products?.length)}
@@ -66,5 +71,5 @@ const GetProductList = () => {
       </InfiniteScroll>
     </div>
   )
-}
+ }
 export default GetProductList
